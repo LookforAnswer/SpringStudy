@@ -1,4 +1,4 @@
-package com.qxy.spring.beans.autowire;
+package com.qxy.spring.beans.spel;
 
 public class Address {
 	private String city;
