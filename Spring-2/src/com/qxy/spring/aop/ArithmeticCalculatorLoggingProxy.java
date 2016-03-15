@@ -14,27 +14,27 @@ public class ArithmeticCalculatorLoggingProxy {
 		
 		ArithmeticCalculator proxy = null;
 		
-		//´úÀí¶ÔÏóÓÉÄÄÒ»¸öÀà¼ÓÔØÆ÷¸ºÔğ¼ÓÔØ
+		//ä»£ç†å¯¹è±¡ç”±å“ªä¸€ä¸ªç±»åŠ è½½å™¨è´Ÿè´£åŠ è½½
 		ClassLoader loader = target.getClass().getClassLoader();
-		//´úÀí¶ÔÏóµÄÀàĞÍ£¬¼´ÆäÖĞÓĞÄÄĞ©·½·¨
+		//ä»£ç†å¯¹è±¡çš„ç±»å‹ï¼Œå³å…¶ä¸­æœ‰å“ªäº›æ–¹æ³•
 		Class [] interfaces = new Class[]{ArithmeticCalculator.class};
 		
-		//µ±µ÷ÓÃ´úÀí¶ÔÏóÆäÖĞµÄ·½·¨Ê±£¬¸ÃÖ´ĞĞµÄ´úÂë
+		//å½“è°ƒç”¨ä»£ç†å¯¹è±¡å…¶ä¸­çš„æ–¹æ³•æ—¶ï¼Œè¯¥æ‰§è¡Œçš„ä»£ç 
 		java.lang.reflect.InvocationHandler h = new InvocationHandler(){
 
 			/**
-			 * arg0: ÕıÔÚ·µ»ØµÄÄÇ¸ö´úÀí¶ÔÏó£¬Ò»°ãÇé¿öÏÂ£¬ÔÚinvoke ·½·¨ÖĞ¶¼²»Ê¹ÓÃ¸Ã¶ÔÏó
-			 * arg1: ÕıÔÚ±»µ÷ÓÃµÄ·½·¨
-			 * args: µ÷ÓÃ·½·¨Ê±£¬´«ÈëµÄ²ÎÊı
+			 * arg0: æ­£åœ¨è¿”å›çš„é‚£ä¸ªä»£ç†å¯¹è±¡ï¼Œä¸€èˆ¬æƒ…å†µä¸‹ï¼Œåœ¨invoke æ–¹æ³•ä¸­éƒ½ä¸ä½¿ç”¨è¯¥å¯¹è±¡
+			 * arg1: æ­£åœ¨è¢«è°ƒç”¨çš„æ–¹æ³•
+			 * args: è°ƒç”¨æ–¹æ³•æ—¶ï¼Œä¼ å…¥çš„å‚æ•°
 			 */
 			@Override
 			public Object invoke(Object arg0, Method arg1, Object[] arg2) throws Throwable {
 				String methodName = arg1.getName();
-				//ÈÕÖ¾
+				//æ—¥å¿—
 				System.out.println("The Method " + methodName + " begins with " + Arrays.asList(arg2));
-				//Ö´ĞĞ·½·¨
+				//æ‰§è¡Œæ–¹æ³•
 				Object result = arg1.invoke(target, arg2);
-				//ÈÕÖ¾
+				//æ—¥å¿—
 				System.out.println("The method " + methodName + "end with " + result);
 				return 0;
 			}
